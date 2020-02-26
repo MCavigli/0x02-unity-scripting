@@ -4,8 +4,8 @@ public class PlayerController : MonoBehaviour
 {
 	public Rigidbody rb;
 	public float speed = 500f;
+	private int score = 0;
 
-	// Update is called once per frame
 	void FixedUpdate()
 	{
 		if (Input.GetKey("w"))
@@ -23,6 +23,15 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetKey("d"))
 		{
 			rb.AddForce(speed * Time.deltaTime, 0, 0);
+		}
+	}
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "Pickup")
+		{
+			score += 1;
+			Debug.Log("Score: " + score);
+			Destroy(other.gameObject);
 		}
 	}
 }
