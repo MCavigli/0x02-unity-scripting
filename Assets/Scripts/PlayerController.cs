@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour
 {
 	public Rigidbody rb;
 	public float speed = 500f;
+	public int health = 5;
 	private int score = 0;
 
 	void FixedUpdate()
@@ -32,6 +33,11 @@ public class PlayerController : MonoBehaviour
 			score += 1;
 			Debug.Log("Score: " + score);
 			Destroy(other.gameObject);
+		}
+		if (other.tag == "Trap")
+		{
+			health -= 1;
+			Debug.Log("Health: " + health);
 		}
 	}
 }
